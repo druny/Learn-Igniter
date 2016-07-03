@@ -9,6 +9,10 @@ class News extends CI_Controller {
         $data['news'] = $this->NewsModel->allNews();
         $this->load->view('news/all', $data);
     }
+    public function add()
+    {
+        $this->load->view('news/add');
+    }
     
 
 }
