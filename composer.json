@@ -1,0 +1,12 @@
+{
+    "name": "khara/learn-igniter",
+    "authors": [
+        {
+            "name": "KharamanV",
+            "email": "kharaman.vova@idev.bz"
+        }
+    ],
+    "require": {
+    	"mustache/mustache": "~2.5"
+    }
+}
