@@ -13,4 +13,9 @@ class NewsModel extends CI_Model
         $this->db->insert('news', $data);
 
     }
+    public function oneNews($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('news');
+        return $query->result_array();
+    }
 }
