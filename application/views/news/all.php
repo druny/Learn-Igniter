@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Новостная лента</title>
-    <link rel="stylesheet" href="/template/first/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 <body>
 
 <div class="header">
     <div class="container">
         <ul class="menu">
-            <li><a href="/index.php/news/index">Новостная лента</a></li>
-            <li><a href="/index.php/news/add">Добавление новостей</a></li>
+            <li><a href="/news/index">Новостная лента</a></li>
+            <li><a href="/news/add">Добавление новостей</a></li>
             <li><a href="/News/Search">Поиск новостей</li>
             <li><a href="/Users/All">Список пользователей</a></li>
         </ul>

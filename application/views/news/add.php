@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="/template/first/css/style.css">
-    <script src="/plugins/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+
 
 </head>
 <body>
@@ -12,15 +12,15 @@
 <div class="header clearfix">
     <div class="container">
         <ul class="menu">
-            <li><a href="/index.php/news/index">Новостная лента</a></li>
-            <li><a href="/index.php/news/add">Добавление новостей</a></li>
+            <li><a href="/news/index">Новостная лента</a></li>
+            <li><a href="/news/add">Добавление новостей</a></li>
             <li><a href="/News/Search">Поиск новостей</li>
             <li><a href="/Users/All">Список пользователей</a></li>
         </ul>
     </div>
 </div>
 <div class="container clearfix">
-<form action="/Admin/Add"  method="post" enctype="multipart/form-data">
+<form action="/news/add"  method="post" enctype="multipart/form-data">
    <label> <h2>Заголовок: </h2>
     <input type="text" name="title">
     </label>

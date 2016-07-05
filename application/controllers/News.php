@@ -11,13 +11,17 @@ class News extends CI_Controller {
     }
     public function add()
     {
+        $data['title'] = $_POST['title'];
+        $data['text'] = $_POST['text'];
+        $data['category_id'] = $_POST['category_id'];
+
+        $this->load->model('NewsModel');
+        $this->NewsModel->addNews($data);
+
         $this->load->view('news/add');
     }
 
-    public function mustache()
-    {
-        echo "string";
-    }
+
     
 
 }
