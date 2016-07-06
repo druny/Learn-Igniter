@@ -49,10 +49,10 @@
 
             <ul class="admin-article">
                 <li class="update-news">
-                    <a href="/news/Update/<?=$item['id']; ?>">Обновить новость</a>
+                    <a href="/news/update/<?=$item['id']; ?>">Обновить новость</a>
                 </li>
                 <li class="delete-news">
-                    <a href="/news/Del/<?=$item['id']; ?>">Удалить новость</a>
+                    <a href="/news/del/<?=$item['id']; ?>">Удалить новость</a>
                 </li>
             </ul>
         </div>

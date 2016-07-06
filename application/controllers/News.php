@@ -46,6 +46,14 @@ class News extends CI_Controller {
         $data['news'] = $this->NewsModel->oneNews($id);
         $this->load->view('news/update', $data);
     }
+    function del($id) {
+
+        if(isset($id) && !empty($id)) {
+            $this->load->model('NewsModel');
+            $result = $this->NewsModel->deleteNews($id);
+        }
+        header('Location: /news/');
+    }
 
     
 

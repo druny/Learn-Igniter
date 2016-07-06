@@ -26,4 +26,9 @@ class NewsModel extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('news', $data);
     }
+    public function deleteNews($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('news');
+    }
 }
