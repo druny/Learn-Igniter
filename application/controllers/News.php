@@ -31,6 +31,21 @@ class News extends CI_Controller {
         }
         $this->load->view('news/one', $data);
     }
+    function update($id)
+    {
+        $this->load->model('NewsModel');
+
+        if(!empty($_POST)) {
+            $data['title'] = $_POST['title'];
+            $data['text'] = $_POST['text'];
+            $this->NewsModel->updateNews($data, $id);
+
+            header('Location: /news/Update/' . $id);
+        }
+
+        $data['news'] = $this->NewsModel->oneNews($id);
+        $this->load->view('news/update', $data);
+    }
 
     
 

@@ -36,10 +36,10 @@
 </div>
     <ul class="admin-article clearfix">
         <li class="update-news">
-            <a href="/Admin/Update/<?=$item['id']; ?>">Обновить новость</a>
+            <a href="/news/Update/<?=$item['id']; ?>">Обновить новость</a>
         </li>
         <li class="delete-news">
-            <a href="/Admin/Del/<?=$item['id']; ?>">Удалить новость</a>
+            <a href="/news/Del/<?=$item['id']; ?>">Удалить новость</a>
         </li>
         <li>
             <a href="/news" style="text-decoration:  none; color: darkblue;">Вернуться</a>
