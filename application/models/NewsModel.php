@@ -3,10 +3,10 @@
 
 class NewsModel extends CI_Model
 {
-    public function allNews()
+    public function allNews($num, $offset)
     {
         $this->db->order_by('id','DESC');
-        $query = $this->db->get('news');
+        $query = $this->db->get('news',$num, $offset);
         return $query->result_array();
     }
     public function addNews($data)
