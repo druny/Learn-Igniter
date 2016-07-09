@@ -14,6 +14,7 @@ class News extends CI_Controller {
         $this->load->model('NewsModel');
         $data['news'] = $this->NewsModel->allNews($config['per_page'],
                                             $this->uri->segment(3));
+        $this->pagination->initialize($config);
         $this->load->view('news/all', $data);
     }
     public function add()
