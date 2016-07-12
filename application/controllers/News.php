@@ -5,16 +5,17 @@ class News extends CI_Controller {
 
     public function index()
     {
+        $page = $this->uri->segment(3);
         $config['base_url'] = base_url() . '/news/index/';
         $config['per_page'] = '3';
         $config['total_rows'] = $this->db->count_all('news');
+        $config['use_page_numbers'] = TRUE;
 //        var_dump(($this->db->count_all('news')/$config['per_page']));
 
         $this->pagination->initialize($config);
 
         $this->load->model('NewsModel');
-        $data['news'] = $this->NewsModel->allNews($config['per_page'],
-                                            $this->uri->segment(3));
+        $data['news'] = $this->NewsModel->allNews($config['per_page'], $page);
 
         $this->load->view('news/all', $data);
     }

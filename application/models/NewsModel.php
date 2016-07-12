@@ -3,11 +3,11 @@
 
 class NewsModel extends CI_Model
 {
-    public function allNews($num , $offset)
+    public function allNews($num , $page)
     {
-        
+        $db_offset = ($page == 0) ? 0 : ($num * $page) - $num;
         $this->db->order_by('id','DESC');
-        $this->db->limit($num, $offset);
+        $this->db->limit($num, $db_offset);
 
         $query = $this->db->get('news');
 
