@@ -36,7 +36,7 @@
                 <a href="" class="name-user">Steve Jobs</a>
                 <!--<a href="/News/Category/<?/*= $item['category_name']; */?>" class="comments-news"><!--Comments-->
                     <?/*= $item['category']; */?>
-                </a>-->
+                </a>
             </div>
             <div class="info">
                 <div class="title">
@@ -58,7 +58,9 @@
         </div>
 
     <?php endforeach; ?>
-    <?=$this->pagination->create_links(); ?>
+    <div style="color: #fff">
+        <?=$this->pagination->create_links(); ?>
+    </div>
 </div>
 </body>
 </html>
