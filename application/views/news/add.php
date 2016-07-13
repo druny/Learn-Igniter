@@ -34,7 +34,7 @@
             CKEDITOR.replace( 'text');
         </script>-->
     </label>
-    <input type="file" name="image">
+    <input type="file" name="img">
     <select name="category_id">
         <option value="1">Статьи</option>
         <option value="2">Сниппеты</option>

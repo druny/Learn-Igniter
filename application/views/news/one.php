@@ -18,6 +18,7 @@
 </div>
 <div class="container clearfix">
     <?php  foreach ($news as $item):?>
+        <img src="/uploads/<?= $item['img'] ?>" class="news-img">
     <div class="articles clearfix">
         <div class="info-date clearfix">
             <a href="" class="date-news">April 17, 2016</a>

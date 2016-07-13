@@ -22,17 +22,19 @@ class News extends CI_Controller {
     public function add()
     {
         if(!empty($_POST)) {
-            $config = [
-                'upload_path' => '././www/uploads/',
-                'allowed_types' => 'gif|jpg|png|jpeg',
-                'max_size' => '5000'
-            ];
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 5000;
 
-            $this->load->library('upload', $config);
-            $this->upload->do_upload();
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+
+            $this->upload->do_upload('img');
+
 
             $data['title'] = $_POST['title'];
             $data['text'] = $_POST['text'];
+            $data['img'] = $this->upload->data("file_name");
             $data['category_id'] = $_POST['category_id'];
             $this->load->model('NewsModel');
             $this->NewsModel->addNews($data);

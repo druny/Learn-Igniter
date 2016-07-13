@@ -15,7 +15,7 @@
             <li><a href="/News/Search">Поиск новостей</li>
             <li><a href="/Users/All">Список пользователей</a></li>
         </ul>
-       <!-- <?php /* foreach ($news as $category):*/?>
+        <!-- <?php /* foreach ($news as $category):*/?>
             <ul class="category_menu">
                 <li>
                     <a href="/news/all/?category=<?/*=$category['category_name']; */?>">
@@ -29,13 +29,13 @@
 
 <div class="container">
     <?php  foreach ($news as $item):?>
-        <img src="/img/<?= $item['img'] ?>" class="news-img">
+        <img src="/uploads/<?= $item['img'] ?>" class="news-img">
         <div class="articles clearfix">
             <div class="info-date clearfix">
                 <a href="" class="date-news">April 17, 2016</a>
                 <a href="" class="name-user">Steve Jobs</a>
                 <!--<a href="/News/Category/<?/*= $item['category_name']; */?>" class="comments-news"><!--Comments-->
-                    <?/*= $item['category']; */?>
+                <?/*= $item['category']; */?>
                 </a>
             </div>
             <div class="info">
