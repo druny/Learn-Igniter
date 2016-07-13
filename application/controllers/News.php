@@ -44,7 +44,24 @@ class News extends CI_Controller {
 
             $this->load->library('image_lib');
             $this->image_lib->initialize($config);
-            $this->image_lib->resize('img');
+            $this->image_lib->resize();
+
+            $config = [
+                'source_image' => $img_data['full_path'],
+                'new_image' => APPPATH . '../www/uploads/wm/',
+                'wm_text' => 'ModX THE Best',
+                'wm_type' => 'text',
+                'wm_font_path' => './system/fonts/texb.ttf',
+                'wm_font_size' => '20',
+                'wm_font_color' => 'ffffff',
+                'wm_vrt_alignment' => 'bottom',
+                'wm_hor_alignment' => 'center',
+                'wm_padding' => '20'
+            ];
+
+            $this->image_lib->initialize($config);
+            $this->image_lib->watermark();
+
 
             $data['title'] = $_POST['title'];
             $data['text'] = $_POST['text'];
