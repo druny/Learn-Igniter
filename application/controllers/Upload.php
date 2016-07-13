@@ -22,11 +22,13 @@ class Upload extends CI_Controller {
         $this->load->library('upload');
         $this->upload->initialize($config);
 
+
+
         if ( ! $this->upload->do_upload('userfile'))
         {
             $error = array('error' => $this->upload->display_errors());
-
             $this->load->view('upload_form', $error);
+
         }
         else
         {
@@ -34,6 +36,7 @@ class Upload extends CI_Controller {
 
             $this->load->view('upload_success', $data);
         }
+        
     }
 }
 ?>
