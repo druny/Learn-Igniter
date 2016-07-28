@@ -46,7 +46,10 @@ class News extends CI_Controller {
             $this->image_lib->initialize($config);
             $this->image_lib->resize();
 
-            $config = [
+
+
+            /*don't work watermark*/
+           /* $config = [
                 'source_image' => $img_data['full_path'],
                 'new_image' => APPPATH . '../www/uploads/wm/',
                 'wm_text' => 'ModX THE Best',
@@ -54,13 +57,12 @@ class News extends CI_Controller {
                 'wm_font_path' => './system/fonts/texb.ttf',
                 'wm_font_size' => '20',
                 'wm_font_color' => 'ffffff',
-                'wm_vrt_alignment' => 'bottom',
+                'wm_vrt_alignment' => 'top',
                 'wm_hor_alignment' => 'center',
                 'wm_padding' => '20'
             ];
-
             $this->image_lib->initialize($config);
-            $this->image_lib->watermark();
+            $this->image_lib->watermark();*/
 
 
             $data['title'] = $_POST['title'];
