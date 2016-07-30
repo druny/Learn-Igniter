@@ -21,58 +21,81 @@ class News extends CI_Controller {
     }
     public function add()
     {
+        session_start();
         if(!empty($_POST)) {
-            $config = [
-                'upload_path' => './uploads/',
-                'allowed_types' => 'gif|jpg|png',
-                'max_size' => 5000
-            ];
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            $this->upload->do_upload('img');
+            $data['captcha'] = $_POST['captcha'];
+            if($data['captcha'] == $_SESSION['word'])
+            {
+                $config = [
+                    'upload_path' => './uploads/',
+                    'allowed_types' => 'gif|jpg|png',
+                    'max_size' => 5000
+                ];
+                $this->load->library('upload');
+                $this->upload->initialize($config);
+                $this->upload->do_upload('img');
 
-            $img_data = $this->upload->data();
-            $config = [
-                'image_library' => 'gd2',
-                'source_image' => $img_data['full_path'],
-                'new_image' => APPPATH . '../www/uploads/290x290/',
-                'create_thumb' => TRUE,
-                'maintain_ratio' => TRUE,
-                'width' => 290,
-                'height' => 290
-            ];
+                $img_data = $this->upload->data();
+                $config = [
+                    'image_library' => 'gd2',
+                    'source_image' => $img_data['full_path'],
+                    'new_image' => APPPATH . '../www/uploads/290x290/',
+                    'create_thumb' => TRUE,
+                    'maintain_ratio' => TRUE,
+                    'width' => 290,
+                    'height' => 290
+                ];
 
-            $this->load->library('image_lib');
-            $this->image_lib->initialize($config);
-            $this->image_lib->resize();
-            
-            /*don't work watermark*/
-           /* $config = [
-                'source_image' => $img_data['full_path'],
-                'new_image' => APPPATH . '../www/uploads/wm/',
-                'wm_text' => 'ModX THE Best',
-                'wm_type' => 'text',
-                'wm_font_path' => './system/fonts/texb.ttf',
-                'wm_font_size' => '20',
-                'wm_font_color' => 'ffffff',
-                'wm_vrt_alignment' => 'top',
-                'wm_hor_alignment' => 'center',
-                'wm_padding' => '20'
-            ];
-            $this->image_lib->initialize($config);
-            $this->image_lib->watermark();*/
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($config);
+                $this->image_lib->resize();
 
 
-            $data['title'] = $_POST['title'];
-            $data['text'] = $_POST['text'];
-            $data['img'] = $img_data["file_name"];
-            $data['category_id'] = $_POST['category_id'];
 
-            $this->load->model('NewsModel');
-            $this->NewsModel->addItems($data, 'news');
-            header('Location: /news/add/');
+                $news['title'] = $_POST['title'];
+                $news['text'] = $_POST['text'];
+                $news['img'] = $img_data["file_name"];
+                $news['category_id'] = $_POST['category_id'];
+
+                $this->load->model('NewsModel');
+                $this->NewsModel->addItems($news, 'news');
+                header('Location: /news/add/');
+            } else {
+                echo 'AHAH NOOOO!';
+                die;
+            }
         } else {
-            $this->load->view('news/add');
+            $this->load->helper('captcha');
+            $this->load->helper('string');
+            $word = random_string('numeric');
+
+            $vals = [
+                'word'          => $word,
+                'img_path'      => '../www/uploads/captcha/',
+                'img_url'       => base_url() . 'uploads/captcha/',
+                'font_path'     => './system/fonts/texb.ttf',
+                'img_width'     => 175,
+                'img_height'    => 30,
+                'expiration'    => 200,
+                'word_length'   => 5,
+                'font_size'     => 22,
+                'img_id'        => 'Imageid',
+                'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+
+                // White background and border, black text and red grid
+                'colors'        => [
+                    'background' => [255, 255, 255],
+                    'border' => [255, 255, 255],
+                    'text' => [0, 0, 0],
+                    'grid' => [255, 40, 40]
+                ]
+            ];
+            //session_start();
+            $_SESSION['word'] = $word;
+            $cap = create_captcha($vals);
+
+            $data['cap'] = $cap;
+            $this->load->view('news/add', $data);
         }
 
     }

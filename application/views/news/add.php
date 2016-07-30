@@ -39,6 +39,10 @@
         <option value="1">Статьи</option>
         <option value="2">Сниппеты</option>
     </select>
+    <p>Submit the word you see below:</p>
+    <?= $cap['image']; ?>
+    <br>
+    <input type="text" name="captcha"><br><br>
     <input  type="submit" value="Добавить">
 
 </div>
