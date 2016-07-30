@@ -45,9 +45,7 @@ class News extends CI_Controller {
             $this->load->library('image_lib');
             $this->image_lib->initialize($config);
             $this->image_lib->resize();
-
-
-
+            
             /*don't work watermark*/
            /* $config = [
                 'source_image' => $img_data['full_path'],
@@ -71,7 +69,7 @@ class News extends CI_Controller {
             $data['category_id'] = $_POST['category_id'];
 
             $this->load->model('NewsModel');
-            $this->NewsModel->addNews($data);
+            $this->NewsModel->addItems($data, 'news');
             header('Location: /news/add/');
         } else {
             $this->load->view('news/add');

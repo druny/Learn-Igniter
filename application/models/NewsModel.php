@@ -13,9 +13,9 @@ class NewsModel extends CI_Model
 
         return $query->result_array();
     }
-    public function addNews($data)
+    public function addItems($data, $table)
     {
-        $this->db->insert('news', $data);
+        $this->db->insert($table, $data);
     }
     public function oneNews($id)
     {
