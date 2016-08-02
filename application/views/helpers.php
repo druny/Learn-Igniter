@@ -14,5 +14,6 @@
         <input type="text" name="captcha">
         <input type="submit" value="Send">
     </form>
+    <?php echo $this->benchmark->memory_usage();?>
 </body>
 </html>

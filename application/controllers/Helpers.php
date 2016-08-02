@@ -7,8 +7,13 @@ class Helpers extends CI_Controller
     
     function captcha()
     {
+        $this->benchmark->mark('start');
         session_start();
-        $data['captcha'] = $_POST['captcha'];
+
+        if(isset($_POST['captcha'])) {
+            $data['captcha'] = $_POST['captcha'];
+        }
+
 
         $this->load->helper('captcha');
         $this->load->helper('string');
@@ -46,5 +51,55 @@ class Helpers extends CI_Controller
         $this->load->model('NewsModel');
         $this->NewsModel->addItems($captcha, 'captcha');
         $this->load->view('helpers', $data);
+        $this->benchmark->mark('end');
+        echo $this->benchmark->elapsed_time('start', 'end');
+
     }
+
+    function validation() {
+        if(!empty($_POST))
+        {
+            $this->load->library('form_validation');
+            $this->load->model('RulesModel');
+            $this->form_validation->set_rules($this->RulesModel->add_rules);
+            $check = $this->form_validation->run();
+            if($check == true)
+            {
+                $this->load->view('success-page');
+            } else {
+
+            }
+
+            
+        } else {
+            $this->load->view('validation');
+        }
+
+    }
+
+    function cache()
+    {
+        $this->load->driver('cache', ['adapter' => 'apc', 'backup' => 'file']);
+
+        if ( ! $foo = $this->cache->get('foo'))
+        {
+            echo 'Saving to the cache!<br />';
+            $foo = 'foobarbaz!';
+
+            // Save into the cache for 5 minutes
+            $this->cache->save('foo', $foo, 30);
+        }
+
+        echo $foo;
+        $foo = $this->cache->get('foo');
+        var_dump($foo);
+
+        var_dump($this->cache->cache_info());
+
+        var_dump($this->cache->get_metadata('foo'));
+
+    }
+
+
+
 }
