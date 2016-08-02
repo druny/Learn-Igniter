@@ -100,6 +100,24 @@ class Helpers extends CI_Controller
 
     }
 
+    function calendar()
+    {
+
+        $pref = [
+            'start_day' => 'monday',
+            'month_type' => 'long',
+            'day_type' => 'short',
+            'show_next_prev' => TRUE,
+            'nex_prev_url' => base_url() . 'helpers/calendar/',
+            'show_other_days' => TRUE
+        ];
+        $this->load->library('calendar', $pref);
+        $data = [
+            3 => 'http://www.codeigniter.com/user_guide/libraries/calendar.html'
+        ];
+        echo $this->calendar->generate($this->uri->segment(3), $this->uri->segment(4), $data);
+        var_dump($this->calendar->adjust_date(130, 2014));
+    }
 
 
 }
