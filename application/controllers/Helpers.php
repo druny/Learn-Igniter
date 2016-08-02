@@ -119,5 +119,21 @@ class Helpers extends CI_Controller
         var_dump($this->calendar->adjust_date(130, 2014));
     }
 
+    function encrypt()
+    {
+        $this->load->library('encrypt');
+        $str = 'String';
+        $enc_str = $this->encrypt->encode($str);
+        var_dump($enc_str);
+        $decode = $this->encrypt->decode($enc_str);
+        var_dump($decode);
+
+        $this->load->library('encryption');
+        var_dump($this->input->ip_address());
+        echo '<br>' , $this->input->user_agent() , '<br><br>';
+        var_dump($this->input->request_headers());
+        echo  '<br><br>';
+        var_dump($this->input->is_ajax_request());
+    }
 
 }
